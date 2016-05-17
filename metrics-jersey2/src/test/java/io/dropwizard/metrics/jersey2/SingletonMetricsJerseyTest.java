@@ -1,29 +1,24 @@
 package io.dropwizard.metrics.jersey2;
 
-import static io.dropwizard.metrics.MetricRegistry.name;
-
+import io.dropwizard.metrics.Meter;
+import io.dropwizard.metrics.MetricRegistry;
+import io.dropwizard.metrics.Timer;
+import io.dropwizard.metrics.jersey2.resources.InstrumentedResource;
+import io.dropwizard.metrics.jersey2.resources.InstrumentedSubResource;
 import org.glassfish.jersey.client.ClientResponse;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 
-import io.dropwizard.metrics.jersey2.resources.InstrumentedResource;
-import io.dropwizard.metrics.jersey2.resources.InstrumentedSubResource;
-import io.dropwizard.metrics.jersey2.InstrumentedResourceMethodApplicationListener;
-import io.dropwizard.metrics.jersey2.MetricsFeature;
-import io.dropwizard.metrics.Meter;
-import io.dropwizard.metrics.MetricRegistry;
-import io.dropwizard.metrics.Timer;
-
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
-
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static io.dropwizard.metrics.MetricRegistry.name;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
 
